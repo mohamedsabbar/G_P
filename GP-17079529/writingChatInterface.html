@@ -1,0 +1,224 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WritingChat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .chat-box {
+
+      height: 400px;
+      overflow-y: auto;
+      padding: 0.5rem;
+      background-color: #c8d59b;
+      border-radius: 5px;
+    }
+
+    .chat-message {
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    .is-sender {
+      text-align: right;
+      background-color: #b2ecff;
+    }
+  </style>
+</head>
+
+<body class="has-background-primary">
+  <div class="navbar-container">
+
+    <div class="hero-body">
+      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="Home.html">
+            <img src=".vscode\Logo.jpg" alt="logo" width="112" height="28"></img>
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start ">
+            <a href="Home.html" class="navbar-item">
+              Home
+            </a>
+
+            <a href="SpeakingTraining.Html" class="navbar-item">
+              speaking training
+            </a>
+            <a href="WritingTraining.Html" class="navbar-item">
+              Writing training
+            </a>
+            <a href="Exam.html" class="navbar-item">
+              Exams
+            </a>
+            <a href="Reports.Html" class="navbar-item">
+              Reports
+            </a>
+
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-selected has-text-danger-dark" style="display: none;" id="signOutBtn">
+                  <strong>Sign out</strong>
+                </a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <hr>
+  <div class="chat-box " id="chat-box">
+    <div class="chat-message">
+      Hello are you ready?
+    </div>
+
+  </div>
+  <hr class="navbar-divider ">
+  <form class="chat-form" id="chat-form">
+    <div class="field has-addons ">
+      <div class="control is-expanded">
+        <input class="input" id="user-input" type="text" placeholder="Type your message" onfocus="this.spellcheck=true;"
+          onblur="this.spellcheck=false;">
+      </div>
+      <div class="control">
+        <button class="button is-dark " type="submit">Send</button>
+      </div>
+    </div>
+  </form>
+
+
+  <script>
+
+    //Retrieving DOM elements
+    const chatBox = document.getElementById('chat-box');
+    const chatForm = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+
+
+    // Retrieve the activity query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const activity = urlParams.get('activity');
+
+    // Function to customize the initial message array based on the activity
+    function getInitialMessageArray(activity) {
+      switch (activity) {
+        case 'write_improve':
+          return [
+            { role: 'system', content: "You are an English teacher playing the Story Game! This game allows students to practice their writing skills by constructing a story with the help of the chatbot. Let's stay focused on the task and avoid discussing unrelated topics.  when finish , return a full Feedback Report :  contatin: Vocabulary:a table  a table of Misspelled Word | Frequency | Correct Spelling | and anther table contain this 3 col.> Grammar Mistake | Suggestion | YouTube  Video title Recommendation \n" },
+            { role: 'assistant', content: 'Hi there! Are you ready to improve your writing skills? Type out a paragraph, and Ill provide feedback on each line to help you enhance your fluency and grammar. Lets get started!' }];
+        case 'story_game':
+          return [
+            { role: 'system', content: 'you are an english teacher playing the Story Game! This game allows student to practice  writing skills by constructing a story with the help of the chatbot. Let\'s stay focused on the task and avoid discussing unrelated topics., when finish , return a full Feedback Report :  contatin: Vocabulary:a table  a table of Misspelled Word | Frequency | Correct Spelling | and anther table contain this 3 col.> Grammar Mistake | Suggestion | YouTube  Video title Recommendation' },
+            { role: 'assistant', content: 'Hi there! Are you ready to create an engaging story? Start by typing the beginning of your story, and I\'ll provide suggestions and prompts to keep the story going.' },
+          ];
+        case 'language_adventure':
+          return [
+            { role: 'system', content: 'Welcome to Language Adventure! This is an engaging game that aims to enhance your language proficiency. It offers exciting scenarios and challenges that require you to provide appropriate instructions or responses using correct language and grammar. Let\'s stay focused on the task and avoid discussing unrelated topics. when finish , return a full Feedback Report :  contatin: Vocabulary:a table  a table of Misspelled Word | Frequency | Correct Spelling | and anther table contain this 3 col.> Grammar Mistake | Suggestion | YouTube  Video title Recommendation \n' },
+            { role: 'assistant', content: 'Hi there! Get ready for an exciting language adventure. I will present scenarios or challenges, and you need to provide the appropriate instructions or responses.  Are you ready for the adventure?' },
+          ];
+        case 'Custom_Exam':
+          return [
+            { role: 'system', content: 'Welcome to Custom Exam Preparation! This chatbot provides personalized practice exams. Copy and paste your previous reports, and I will generate a custom test that targets your areas of weakness and enhances your strengths. Let\'s stay focused on the task and avoid discussing unrelated topics.' },
+            { role: 'assistant', content: 'Welcome to Custom Exam Preparation! Are you ready to receive a personalized practice exam? Copy and paste your previous reports here, and I will generate a custom test that focuses on your weak areas and enhances your strengths. Let\'s begin!' },
+          ];
+        case 'ielts_writing_task2_evaluation':
+          return [
+            { role: 'system', content: 'Welcome to IELTS Writing Task 2 Evaluation! This feature allows you to get feedback on your IELTS Writing Task 2 essays. Simply paste your essay here, and I will evaluate it based on the IELTS scoring criteria. Let\'s stay focused on the task and avoid discussing unrelated topics.' },
+            { role: 'assistant', content: 'Hi there! Are you ready to receive feedback on your IELTS Writing Task 2 essay? Paste your essay here, and I will evaluate it based on the IELTS scoring criteria. Let\'s get started!' }
+          ];
+          
+      
+        default:
+      }
+    }
+
+    // Function to add a new chat message to the chat box
+    function addChatMessage(message, isSender = false) {
+      const chatMessage = document.createElement('div');
+      chatMessage.classList.add('chat-message');
+      if (isSender) {
+        chatMessage.classList.add('is-sender');
+      }
+      chatMessage.innerHTML = `<p> <pre>${message}</pre> </p>`;
+      chatBox.appendChild(chatMessage);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+    }
+
+    // Function to handle user input
+    function handleUserInput(event) {
+      event.preventDefault();
+      const message = userInput.value;
+      if (message.trim() !== '') {
+        addChatMessage(message, true);
+        userInput.value = '';
+        sendRequestToChatGPT(message);
+      }
+    }
+
+    // Function to send user message to ChatGPT API
+    function sendRequestToChatGPT(message) {
+      const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+
+      const initialMessages = getInitialMessageArray(activity);
+
+      // Get the existing chat messages from the chat box
+      const existingMessages =  Array.from(chatBox.getElementsByClassName('chat-message'))
+        .map((element) => element.innerText);
+
+      // Add the user's new message to the message history
+      messageHistory = [
+        ...initialMessages.map((msg) => ({ role: 'assistant', content: msg.content })),
+        ...existingMessages.map((msg) => ({ role: 'user', content: msg })),
+      ];
+
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer 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`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: messageHistory,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          const reply = data.choices[0].message.content;
+          addChatMessage(reply);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    chatForm.addEventListener('submit', handleUserInput);
+
+  </script>
+  <script src="./firebase.js" type="module"></script>
+  <script src="Authen.js" type="module"></script>
+
+</body>
+
+</html>

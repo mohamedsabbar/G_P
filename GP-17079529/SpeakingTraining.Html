@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="has-background-primary">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speaking-training</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+
+<body class="has-background-primary is-fullheight">
+
+
+  <div class="navbar-container">
+
+    <div class="hero-body">
+      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="Home.html">
+            <img src=".vscode\Logo.jpg" alt="logo" width="112" height="28"></img>
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start ">
+            <a href="Home.html" class="navbar-item">
+              Home
+            </a>
+
+            <a href="SpeakingTraining.Html" class="navbar-item">
+              speaking training
+            </a>
+            <a href="WritingTraining.Html" class="navbar-item">
+              Writing training
+            </a>
+            <a href="Exam.html" class="navbar-item">
+              Exams
+            </a>
+            <a href="Reports.Html" class="navbar-item">
+              Reports
+            </a>
+
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-selected has-text-danger-dark" style="display: none;" id="signOutBtn">
+                  <strong>Sign out</strong>
+                </a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <section class="section ">
+    <div class="container ">
+      <div class="columns ">
+        <div class="column is-half ">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <h1 class="title is-1 is-bold">Speaking Training</h1>
+          <hr class="has-background-primary">
+
+        </div>
+
+        <div class="column has-background-black is-hidden">
+          <div class="vertical-line "></div>
+        </div>
+
+
+        <div class="column has-background-primary">
+
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+
+          <a href="SpeakingChatInteface.html?activity=General_Speaking">
+            <button
+              class="button is-medium has-background-primary has-text-warning-light is-fullwidth has-background-success-dark has-text-weight-bold">General
+              Speaking</button>
+          </a>
+          <div class="      container is-flex is-flex-direction-column has-text-weight-bold ">
+            <p> conversation practice based on your interests and
+              hobbies.</p>
+          </div>
+          <br>
+
+          <a href="SpeakingChatInteface.html?activity=Everyday_scenarios">
+            <button
+              class="button is-medium has-background-primary  has-text-weight-bold has-background-success-dark has-text-warning-light is-fullwidth">Everyday
+              scenarios</button> </a>
+          <div class="      container is-flex is-flex-direction-column  has-text-weight-bold">
+            <p> Practice real-life situations, such as ordering food
+              or asking for directions ...
+            </p>
+            <br>
+          </div>
+          <a href="pronunciation.Html">
+
+            <button
+              class="button is-medium has-background-primary has-text-weight-bold has-background-success-dark has-text-warning-light is-fullwidth">Learn
+              word pronounciation</button></a>
+          <div class="      container is-flex is-flex-direction-column  has-text-weight-bold ">
+            <p>In this section, you can look up any English
+              words and listen to real-life examples of how
+              native speakers pronounce them.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script src="./firebase.js" type="module"></script>
+  <script src="Authen.js" type="module"></script>
+
+</body>
+
+</html>

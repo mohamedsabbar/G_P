@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Reports</title>
+</head>
+
+<body class="has-background-primary is-fullheight">
+    <div class="navbar-container">
+        <div class="hero-body">
+          <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="Home.html">
+                <img src=".vscode\Logo.jpg" alt="logo" width="112" height="28"></img>
+              </a>
+    
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+    
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start ">
+                <a href="Home.html" class="navbar-item">
+                  Home
+                </a>
+    
+                <a href="SpeakingTraining.Html" class="navbar-item">
+                  Speaking Training
+                </a>
+                <a href="WritingTraining.Html" class="navbar-item">
+                  Writing Training
+                </a>
+                <a href="Exam.html" class="navbar-item">
+                  Exams
+                </a>
+                <a href="Reports.Html" class="navbar-item">
+                  Reports
+                </a>
+    
+    
+              </div>
+    
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <a class="button is-selected has-text-danger-dark" style="display: none;" id="signOutBtn">
+                      <strong>Sign out</strong>
+                    </a>
+    
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+    <br>
+    
+    <section class="section">
+        <div class="container ">
+            <h1 class="title">Reports</h1>
+            <div class="field">
+                <div class="control">
+                    <textarea id="inputField" class="textarea is-medium" rows="3"></textarea>
+                </div>
+            </div>
+
+            <h6>Hints: Duble click to copy a report , long press to remove the report  </h6>
+
+            <div class="field">
+                <div class="control">
+                    <button id="addReport" class="button is-medium is-success">+</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="reports" id="reportContainer"> </div>
+        </div>
+    </section>
+    
+    <script src="./firebase.js" type="module"></script>
+    <script src="Authen.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+</body>
+
+</html>

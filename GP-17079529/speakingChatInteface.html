@@ -1,0 +1,237 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakingChatInteface</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .chat-box {
+
+      height: 400px;
+      overflow-y: auto;
+      padding: 0.5rem;
+      background-color: #c8d59b;
+      border-radius: 5px;
+    }
+
+    .chat-message {
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    .is-sender {
+      text-align: right;
+      background-color: #b2ecff;
+    }
+  </style>
+</head>
+
+<body class="has-background-primary">
+  <div class="navbar-container">
+    <div class="hero-body">
+      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="Home.html">
+            <img src=".vscode\Logo.jpg" alt="logo" width="112" height="28"></img>
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start ">
+            <a href="Home.html" class="navbar-item">
+              Home
+            </a>
+
+            <a href="SpeakingTraining.Html" class="navbar-item">
+              speaking training
+            </a>
+            <a href="WritingTraining.Html" class="navbar-item">
+              Writing training
+            </a>
+            <a href="Exam.html" class="navbar-item">
+              Exams
+            </a>
+            <a href="Reports.Html" class="navbar-item">
+              Reports
+            </a>
+
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-selected has-text-danger-dark" style="display: none;" id="signOutBtn">
+                  <strong>Sign out</strong>
+                </a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <hr>
+  <div class="chat-box " id="chat-box">
+    <div class="chat-message">
+      Hello are you ready?
+    </div>
+
+  </div>
+  <hr class="navbar-divider ">
+  <form class="chat-form" id="chat-form">
+    <div class="field has-addons ">
+      <div class="control is-expanded">
+        <input class="input" id="user-input" type="text" placeholder="Type your message" onfocus="this.spellcheck=true;"
+          onblur="this.spellcheck=false;">
+      </div>
+      <div class="control">
+
+        <button class="button is-dark is-info" id="record">Record</button>
+        <button class="button is-dark " type="submit">Send</button>
+
+      </div>
+    </div>
+  </form>
+
+
+  <script>
+    const record = document.getElementById('record');
+    let to_input_filed = document.getElementById('user-input');
+    let recognition;
+
+    record.addEventListener('mousedown', function () {
+      recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.onresult = function (event) {
+        to_input_filed.value = event.results[0][0].transcript;
+      }
+      recognition.start();
+    });
+
+    record.addEventListener('mouseup', function () {
+      if (recognition) {
+        recognition.stop();
+        to_input_filed.blur();
+        to_input_filed.spellcheck = true;
+
+      }
+    });
+  </script>
+
+  <script>
+    // Retrieving DOM elements
+    const chatBox = document.getElementById('chat-box');
+    const chatForm = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+
+    // Retrieving activity query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const activity = urlParams.get('activity');
+
+    // to customize the initial message array, based on the activity.
+    function getInitialMessageArray(activity) {
+      switch (activity) {
+
+        case 'Everyday_scenarios':
+          return [
+            { role: 'system', content: 'Welcome to the Practice real-life situations activity! This activity aims to improve your language skills by simulating everyday scenarios. You can practice ordering food, asking for directions, and more. Let\'s stay focused on the task and avoid discussing unrelated topics. when finish , return a full Feedback Report :  contatin: Vocabulary:a table  a table of Misspelled Word | Frequency | Correct Spelling | and anther table contain this 3 col.> Grammar Mistake | Suggestion | YouTube  Video title Recommendation \n' },
+            { role: 'assistant', content: 'Hi there! Let\'s practice real-life situations such as ordering food or asking for directions. Feel free to initiate a conversation or ask any questions related to everyday scenarios.' }
+          ];
+        case 'General_Speaking':
+          return [
+            { role: 'system', content: 'Welcome to General Speaking conversation practice based on your interests and hobbies! This activity allows you to have a conversation with the chatbot about topics you\'re interested in. You can discuss your hobbies, favorite activities, and more. Let\'s stay focused on the task and avoid discussing unrelated topics.when finish , return a full Feedback Report :  contatin: Vocabulary:a table  a table of Misspelled Word | Frequency | Correct Spelling | and anther table contain this 3 col.> Grammar Mistake | Suggestion | YouTube  Video title Recommendation \n' },
+            { role: 'assistant', content: 'Hi there! Let\'s have a conversation based on your interests and hobbies. Feel free to share your favorite hobbies, activities, or any topics you\'d like to discuss.' }
+          ];
+        case "interview":
+          return [
+            { role: 'system', content: 'Welcome to the IELTS Interview practice activity! This chatbot is designed to help English language learners practice and prepare for their IELTS exam. Feel free to engage in an interview-style conversation where you can simulate common interview questions and practice your speaking skills. Let\'s focus on providing thoughtful and well-structured responses. When finished, you will receive a full Feedback Report including vocabulary, grammar suggestions, and YouTube video recommendations to enhance your skills.' },
+            { role: 'assistant', content: 'Hello! Let\'s conduct an interview-style conversation to help you practice for your IELTS exam. I\'ll ask you some common interview questions, and you can provide your responses. Feel free to ask for clarification or tips along the way.' }
+          ];
+        default:
+      }
+    }
+
+
+
+    // Function to add a new chat message to the chat box
+    function addChatMessage(message, isSender = false) {
+      const chatMessage = document.createElement('div');
+      chatMessage.classList.add('chat-message');
+      if (isSender) {
+        chatMessage.classList.add('is-sender');
+      }
+      chatMessage.innerHTML = `<p> <pre>${message}</pre> </p>`;
+      chatBox.appendChild(chatMessage);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+    }
+
+    // Function to handle user input
+    function handleUserInput(event) {
+      event.preventDefault();
+      const message = userInput.value;
+      if (message.trim() !== '') {
+        addChatMessage(message, true);
+        userInput.value = '';
+        sendRequestToChatGPT(message);
+      }
+    }
+
+    // Function to send user message to ChatGPT API
+    function sendRequestToChatGPT(message) {
+      const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+      const initialMessages = getInitialMessageArray(activity);
+      const existingMessages = Array.from(chatBox.getElementsByClassName('chat-message'))
+        .map((element) => element.innerText);
+
+      messageHistory = [
+        ...initialMessages.map((msg) => ({ role: 'assistant', content: msg.content })),
+        ...existingMessages.map((msg) => ({ role: 'user', content: msg })),
+      ];
+
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer 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`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: messageHistory,
+          max_tokens: 200,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          const reply = data.choices[0].message.content;
+          addChatMessage(reply);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    chatForm.addEventListener('submit', handleUserInput);
+
+  </script>
+  <script src="./firebase.js" type="module"></script>
+  <script src="Authen.js" type="module"></script>
+
+</body>
+
+</html>

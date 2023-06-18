@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="has-background-primary">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingMate-Exams</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+
+<body class="has-background-primary is-fullheight">
+
+  
+  <div class="navbar-container">
+
+    <div class="hero-body">
+      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="Home.html">
+            <img src=".vscode\Logo.jpg" alt="logo" width="112" height="28"></img>
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start ">
+            <a href="Home.html" class="navbar-item">
+              Home
+            </a>
+
+            <a href="SpeakingTraining.Html" class="navbar-item">
+              speaking training
+            </a>
+            <a href="WritingTraining.Html" class="navbar-item">
+              Writing training
+            </a>
+            <a href="Exam.html" class="navbar-item">
+              Exams
+            </a>
+            <a href="Reports.Html" class="navbar-item">
+              Reports
+            </a>
+
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-selected has-text-danger-dark" style="display: none;" id="signOutBtn">
+                  <strong>Sign out</strong>
+                </a>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  
+  <section class="section ">
+    <div class="container ">
+      <div class="columns ">
+        <div class="column is-half ">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <h1 class="title is-1 is-bold">Exams</h1>
+          <hr class="has-background-primary">
+
+        </div>
+
+        <div class="column has-background-black is-hidden">
+          <div class="vertical-line "></div>
+        </div>
+
+
+        <div class="column has-background-primary">
+
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+          <hr class="has-background-primary">
+
+          <a href="speakingChatInteface.html?activity=interview">
+            <button
+              class="button is-medium has-background-primary has-text-warning-light is-fullwidth has-background-success-dark has-text-weight-bold">Interview</button>
+          </a>
+          <div class="      container is-flex is-flex-direction-column has-text-weight-bold ">
+            <p>IELTS interview chatbot for English language
+              learners to practice and prepare for the exam.</p>
+          </div>
+          <br>
+
+          
+          <a href="writingChatInterface.html?activity=ielts_writing_task2_evaluation">
+            <button
+              class="button is-medium has-background-primary  has-text-weight-bold has-background-success-dark has-text-warning-light is-fullwidth">IELTS
+              Writing - evaluation</button> </a>
+
+          <div class="      container is-flex is-flex-direction-column  has-text-weight-bold">
+            <p> In this section, you will receive a
+              comprehensive evaluation of your IELTS
+              Writing Task 2, including a score and detailed
+            </p>
+            <br>
+          </div>
+
+          <a href="writingChatInterface.html">
+            <button
+              class="button is-medium has-background-primary has-text-weight-bold has-background-success-dark has-text-warning-light is-fullwidth">Custom
+              Exam Preparation
+            </button></a>
+          <div class="container is-flex is-flex-direction-column  has-text-weight-bold">
+            <p>Get a personalized practice exam with this chatbot!
+              Copy and paste your previous reports and receive a custom test
+              that targets your areas of weakness and enhances your
+              strengths.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script src="./firebase.js" type="module"></script>
+  <script src="Authen.js" type="module"></script>
+
+</body>
+
+</html>
